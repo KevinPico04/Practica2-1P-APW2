@@ -2,6 +2,8 @@ const { PrismaClient } = require('@prisma/client');
 
 const prisma = new PrismaClient();
 
+
+/*
 // Función para insertar 10 elementos en la entidad transaccional
 async function llenar() {
   try {
@@ -75,3 +77,4 @@ async function main() {
 }
 
 main();
+*/

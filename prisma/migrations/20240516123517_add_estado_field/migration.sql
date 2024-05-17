@@ -1,8 +1,12 @@
+-- CreateEnum
+CREATE TYPE "Estado" AS ENUM ('ACTIVO', 'PENDIENTE', 'ELIMINADO');
+
 -- CreateTable
 CREATE TABLE "Estudiante" (
     "id" SERIAL NOT NULL,
     "nombre" TEXT NOT NULL,
     "identificacion" TEXT NOT NULL,
+    "estado" "Estado" NOT NULL DEFAULT 'ACTIVO',
 
     CONSTRAINT "Estudiante_pkey" PRIMARY KEY ("id")
 );
@@ -11,6 +15,7 @@ CREATE TABLE "Estudiante" (
 CREATE TABLE "Idioma" (
     "id" SERIAL NOT NULL,
     "descripcion" TEXT NOT NULL,
+    "estado" "Estado" NOT NULL DEFAULT 'ACTIVO',
 
     CONSTRAINT "Idioma_pkey" PRIMARY KEY ("id")
 );
@@ -23,6 +28,7 @@ CREATE TABLE "ControlDeIdioma" (
     "porcentajeLectura" INTEGER NOT NULL,
     "porcentajeEscritura" INTEGER NOT NULL,
     "porcentajeEscuchar_hablar" INTEGER NOT NULL,
+    "estado" "Estado" NOT NULL DEFAULT 'ACTIVO',
 
     CONSTRAINT "ControlDeIdioma_pkey" PRIMARY KEY ("id")
 );

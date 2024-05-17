@@ -7,26 +7,36 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Estudiante { 
-  id Int @id @default(autoincrement())
-  nombre String 
-  identificacion String @unique
-  controlDeIdiomas ControlDeIdioma[]
+model Estudiante {
+  id                Int                @id @default(autoincrement())
+  nombre            String
+  identificacion    String             @unique
+  controlDeIdiomas  ControlDeIdioma[]
+  estado            Estado             @default(ACTIVO)
 }
 
-model Idioma { 
-  id Int @id @default(autoincrement()) 
-  descripcion String 
-  controlDeIdiomas ControlDeIdioma[]
+model Idioma {
+  id                Int                @id @default(autoincrement())
+  descripcion       String
+  controlDeIdiomas  ControlDeIdioma[]
+  estado            Estado             @default(ACTIVO)
 }
 
-model ControlDeIdioma { 
-  id Int @id @default(autoincrement()) 
-  estudiante Estudiante @relation(fields: [estudianteId], references: [id])
-  estudianteId Int
-  idioma Idioma @relation(fields: [idiomaId], references: [id])
-  idiomaId Int
-  porcentajeLectura Int 
-  porcentajeEscritura Int 
-  porcentajeEscuchar_hablar Int 
+model ControlDeIdioma {
+  id                    Int            @id @default(autoincrement())
+  estudiante            Estudiante     @relation(fields: [estudianteId], references: [id])
+  estudianteId          Int
+  idioma                Idioma         @relation(fields: [idiomaId], references: [id])
+  idiomaId              Int
+  porcentajeLectura     Int
+  porcentajeEscritura   Int
+  porcentajeEscuchar_hablar Int
+  estado                Estado         @default(ACTIVO)
 }
+
+enum Estado {
+  ACTIVO
+  PENDIENTE
+  ELIMINADO
+}
+
